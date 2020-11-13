@@ -982,7 +982,7 @@ module.exports = grammar({
 
     public_field_definition: $ => seq(
       optional('static'),
-      field('property', $._property_name),
+      field('name', $._property_name),
       optional($._initializer)
     ),
 

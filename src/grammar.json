@@ -5434,7 +5434,7 @@
         },
         {
           "type": "FIELD",
-          "name": "property",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "_property_name"

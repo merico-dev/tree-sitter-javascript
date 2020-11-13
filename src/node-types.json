@@ -2063,7 +2063,7 @@
     "type": "public_field_definition",
     "named": true,
     "fields": {
-      "property": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
