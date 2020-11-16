@@ -434,7 +434,7 @@ module.exports = grammar({
       $.function,
       $.arrow_function,
       $.generator_function,
-      $.class,
+      $.class_expression,
       $.parenthesized_expression,
       $.subscript_expression,
       $.member_expression,
@@ -573,7 +573,7 @@ module.exports = grammar({
       $.jsx_fragment
     ),
 
-    class: $ => seq(
+    class_expression: $ => seq(
       repeat(field('decorator', $.decorator)),
       'class',
       field('name', optional($.identifier)),
@@ -761,7 +761,7 @@ module.exports = grammar({
       ].map(([operator, precedence]) =>
         prec.left(precedence, seq(
           field('left', $._expression),
-          field('operator', operator),
+          operator,
           field('right', $._expression)
         ))
       )
@@ -777,7 +777,7 @@ module.exports = grammar({
       ['delete', PREC.DELETE],
     ].map(([operator, precedence]) =>
       prec.left(precedence, seq(
-        field('operator', operator),
+        operator,
         field('argument', $._expression)
       ))
     )),
@@ -785,10 +785,10 @@ module.exports = grammar({
     update_expression: $ => prec.left(PREC.INC, choice(
       seq(
         field('argument', $._expression),
-        field('operator', choice('++', '--'))
+        choice('++', '--')
       ),
       seq(
-        field('operator', choice('++', '--')),
+        choice('++', '--'),
         field('argument', $._expression)
       ),
     )),
@@ -982,7 +982,7 @@ module.exports = grammar({
 
     public_field_definition: $ => seq(
       optional('static'),
-      field('property', $._property_name),
+      field('name', $._property_name),
       optional($._initializer)
     ),
 
