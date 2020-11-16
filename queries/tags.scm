@@ -12,7 +12,7 @@
   (comment)* @doc
   .
   [
-    (class
+    (class_expression
       name: (_) @name)
     (class_declaration
       name: (_) @name)
